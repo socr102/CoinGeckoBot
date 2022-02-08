@@ -16,7 +16,7 @@ def get_coin_data():
     for i in range(len(coin_market)):
         name.append(coin_market[i]['id'])
         price.append(coin_market[i]['current_price'])
-        roc.append(float(coin_market[0]['current_price']/coin_market[i]['current_price']))
+        roc.append(float(coin_market[i]['current_price']/coin_market[0]['current_price']))
         volume.append(coin_market[i]['total_volume'])
         mcap.append(coin_market[i]['market_cap'])
         fdv.append(coin_market[i]['fully_diluted_valuation'])
