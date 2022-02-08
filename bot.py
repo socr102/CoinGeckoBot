@@ -24,5 +24,5 @@ def get_coin_data():
     # Create DataFrame  
     df = pd.DataFrame(data)  
     df.to_csv('coin.csv')
-
+    print(cg.get_asset_platforms())
 get_coin_data()
