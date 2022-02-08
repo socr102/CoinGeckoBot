@@ -1,9 +1,29 @@
 from pycoingecko import CoinGeckoAPI
 import pandas as pd 
 cg = CoinGeckoAPI()
-def get_price():
+
+def get_coin_data():
+    # set the list to save necessary data
+    name = []
+    price = []
+    roc = []
+    volume = []
+    mcap = []
+    fdv = []
+    # get the data from the API
     coin_market = cg.get_coins_markets(vs_currency='usd')
-    df_market = pd.DataFrame(coin_market,columns=['id','current_price','market_cap','total_volume','fully_diluted_valuation'])
-    df_market.to_csv('coin.csv')
-    print(cg.get_exchange_rates())
-get_price()
+    coin_values = cg.get_exchange_rates()
+    #fill the array
+    for i in range(len(coin_market)):
+        name.append(coin_market[i]['id'])
+        price.append(coin_market[i]['current_price'])
+        roc.append(str(1/coin_values[i]['value']))
+        volume.append(coin_market[i]['total_volume'])
+        mcap.append(coin_market[i]['market_cap'])
+        fdv.append(coin_market[i]['fully_diluted_valuation'])
+    data = {'Name': name, 'Price': price, 'Volume': volume, 'Circ mcap': mcap, 'FDV': fdv}
+    # Create DataFrame  
+    df = pd.DataFrame(data)  
+    df.to_csv('coin.csv')
+
+get_coin_data()
