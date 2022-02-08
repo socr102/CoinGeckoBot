@@ -20,7 +20,7 @@ def get_coin_data():
         volume.append(coin_market[i]['total_volume'])
         mcap.append(coin_market[i]['market_cap'])
         fdv.append(coin_market[i]['fully_diluted_valuation'])
-    data = {'Name': name, 'Price': price, 'Volume': volume, 'Circ mcap': mcap, 'FDV': fdv}
+    data = {'Name': name, 'Price': price, 'ROC': roc, Volume': volume, 'Circ mcap': mcap, 'FDV': fdv}
     # Create DataFrame  
     df = pd.DataFrame(data)  
     df.to_csv('coin.csv')
