@@ -12,14 +12,11 @@ def get_coin_data():
     fdv = []
     # get the data from the API
     coin_market = cg.get_coins_markets(vs_currency='usd')
-    coin_values = cg.get_exchange_rates()
     #fill the array
     for i in range(len(coin_market)):
         name.append(coin_market[i]['id'])
         price.append(coin_market[i]['current_price'])
-        print(coin_values['rates'])
-        # rate = float(coin_values[i]['value'])
-        # roc.append(float(1/rate))
+        roc.append(float(coin_market[0]['current_price']/coin_market[i]['current_price']))
         volume.append(coin_market[i]['total_volume'])
         mcap.append(coin_market[i]['market_cap'])
         fdv.append(coin_market[i]['fully_diluted_valuation'])
