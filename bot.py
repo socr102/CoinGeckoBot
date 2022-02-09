@@ -24,5 +24,5 @@ def get_coin_data():
     # Create DataFrame  
     df = pd.DataFrame(data)  
     df.to_csv('coin.csv')
-    print(cg.get_asset_platforms())
+    print(get_coin_by_id(coin_market[15]['id'])['total_value_locked'])
 get_coin_data()
