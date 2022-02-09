@@ -10,6 +10,8 @@ def get_coin_data():
     volume = []
     mcap = []
     fdv = []
+    tvl=[]
+    platform=[]
     # get the data from the API
     coin_market = cg.get_coins_markets(vs_currency='usd')
     #fill the array
@@ -20,9 +22,11 @@ def get_coin_data():
         volume.append(coin_market[i]['total_volume'])
         mcap.append(coin_market[i]['market_cap'])
         fdv.append(coin_market[i]['fully_diluted_valuation'])
-    data = {'Name': name, 'Price': price, 'Roc': roc, 'Volume': volume, 'Circ mcap': mcap, 'FDV': fdv}
+        tvl.append(cg.get_coin_by_id(coin_market[i]['id'])['market_data']['total_value_locked'])
+        platform.append(cg.get_coin_by_id(coin_market[i]['id'])['asset_platform_id'])
+    data = {'Name': name, 'Price': price, 'Roc': roc, 'Volume': volume, 'Circ mcap': mcap, 'FDV': fdv, 'TVL': tvl, 'Platform': platform}
     # Create DataFrame  
     df = pd.DataFrame(data)  
     df.to_csv('coin.csv')
-    print(cg.get_coin_by_id(coin_market[15]['id'])['total_value_locked'])
+
 get_coin_data()
