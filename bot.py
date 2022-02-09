@@ -1,5 +1,6 @@
 from pycoingecko import CoinGeckoAPI
 import pandas as pd 
+import time
 cg = CoinGeckoAPI()
 
 def get_coin_data():
@@ -25,6 +26,7 @@ def get_coin_data():
         coin_by_id = cg.get_coin_by_id(coin_market[i]['id'])
         tvl.append(coin_by_id['market_data']['total_value_locked'])
         platform.append(coin_by_id['asset_platform_id'])
+        time.sleep(1.5)
 
     data = {'Name': name, 'Price': price, 'Roc': roc, 'Volume': volume, 'Circ mcap': mcap, 'FDV': fdv, 'TVL': tvl, 'Platform': platform}
     # Create DataFrame  
